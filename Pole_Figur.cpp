@@ -2,6 +2,7 @@
 
 
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -11,6 +12,7 @@ double poleKwadratu(double);
 double poleKola(double);
 double poleProstokata(double, double);
 double poleTrojkata(double, double);
+bool isRight(string error_message);
 
 const double pi = 3.14;
 
@@ -35,12 +37,10 @@ int main()
         system("cls"); //clear screen
         initMenuBox();
 
-        while (!(cin >> wybor)) {
-
-            cin.clear(); 
-            cin.ignore(1024, '\n');
-
-        }
+        do {
+            cin >> wybor;
+        } while (!isRight("Zle, nie trolluj tylko podaj poprawna liczbe:   "));
+        
 
         menuDecision(wybor);
 
@@ -74,31 +74,50 @@ void menuDecision(int wybor) {
         case 1: 
             
             cout << "Bok mierzy...   ";  
-            cin >> a; poleKwadratu(a); 
+            do {
+                cin >> a;
+            } while (!isRight("Zle, nie trolluj tylko podaj dlugosc ponownie: "));
+
+            poleKwadratu(a); 
             break;
 
         case 2: 
             
             cout << "Promien twojego kola mierzy...   ";
-            cin >> a; 
+            do {
+                cin >> a;
+            } while (!isRight("Zle, nie trolluj tylko podaj dlugosc ponownie: "));
+
             poleKola(a); 
             break;
 
         case 3: 
             
             cout << "Prostokat w pionie ma...    ";
-            cin >> a; 
+            do {
+                cin >> a;
+            } while (!isRight("Zle, nie trolluj tylko podaj dlugosc ponownie: "));
+            
             cout << "A w poziomie...   ";
-            cin >> b; 
+            do {
+                cin >> b;
+            } while (!isRight("Zle, nie trolluj tylko podaj dlugosc ponownie: "));
+
             poleProstokata(a, b); 
             break;
 
         case 4: 
             
             cout << "Baza twojego trojkata mierzy...    ";
-            cin >> a; 
+            do {
+                cin >> a;
+            } while (!isRight("Zle, nie trolluj tylko podaj dlugosc ponownie: "));
+            
             cout << "A jego wysokosc to...    ";
-            cin >> b; 
+            do {
+                cin >> b;
+            } while (!isRight("Zle, nie trolluj tylko podaj dlugosc ponownie: "));
+
             poleTrojkata(a, b); 
             break;
 
@@ -143,3 +162,17 @@ double poleTrojkata(double a, double b) {
     return wynik;
 }
 
+bool isRight(string error_message) {
+
+    if (cin.rdstate())
+    {
+        cin.clear();
+        cin.ignore(1024, '\n');
+        system("cls");
+        initMenuBox();
+        cout << error_message;
+        return false;
+    }
+    
+    return true;
+}
