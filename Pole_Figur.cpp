@@ -37,7 +37,7 @@ int main()
 
         while (!(cin >> wybor)) {
 
-            cin.clear();
+            cin.clear(); 
             cin.ignore(1024, '\n');
 
         }
