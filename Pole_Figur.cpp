@@ -35,7 +35,12 @@ int main()
         system("cls"); //clear screen
         initMenuBox();
 
-        cin >> wybor;
+        while (!(cin >> wybor)) {
+
+            cin.clear();
+            cin.ignore(1024, '\n');
+
+        }
 
         menuDecision(wybor);
 
