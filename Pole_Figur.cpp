@@ -141,7 +141,7 @@ double poleKola(double a) {
 
     cout << "Pole kola o promieniu mierzacym " << a << " wynosi " << wynik << endl;
 
-    return wynik;
+    return wynik; 
 }
 
 double poleProstokata(double a, double b) {
